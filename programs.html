@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ximei | Programs</title>
+    
+    <!-- 字体与图标链接 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- 链接到您的主样式表 -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body id="top">
+
+    <!-- Header 将被动态加载到此占位符中 -->
+    <header class="site-header" id="header-placeholder"></header>
+
+    <div class="mobile-nav-container" id="mobile-nav">
+
+        <nav class="mobile-nav">
+            <a href="profile.html">Profile</a>
+            <a href="programs.html" class="active">Programs</a>
+            <a href="journey.html">Journey</a>
+        </nav>
+
+        <div class="mobile-nav-social">
+            <a href="https://github.com/agenttasogare" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://www.jjwxc.net/onebook.php?novelid=9904500" target="_blank" rel="noopener noreferrer">Books</a>
+            <a href="https://music.apple.com/profile/agentnekosama" target="_blank" rel="noopener noreferrer">Music</a>
+            <a href="https://www.instagram.com/chimay_merry8/" target="_blank" rel="noopener noreferrer">Instagram</a>
+        </div>
+
+    </div>
+    
+    <main>
+        <section class="programs-section">
+            <div class="container">
+                <h1 class="page-title">My Programs & Research</h1>
+                <p class="page-subtitle">A collection of projects I've worked on, from academic research to personal explorations.</p>
+                
+                <div class="projects-grid">
+                    <!-- === 卡片 1: 已完成的项目 === -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h2 class="project-title">Image-to-Text Generation with Diffusion Models</h2>
+                            <div class="project-meta">
+                                <span><i class="fa-solid fa-calendar-alt"></i> Jan 2024 - May 2024</span>
+                                <span><i class="fa-solid fa-user-group"></i> Team Project</span>
+                                <span><i class="fa-solid fa-building-columns"></i> University of West London</span>
+                            </div>
+                        </div>
+
+                        <div class="project-content">
+                            <h3>content</h3>
+                            <p>This research pioneered image-to-text generation using custom stable diffusion techniques. The work involved extensive data collection, preprocessing, and analysis using Python and PyTorch, culminating in a comprehensive research paper.</p>
+                        </div>
+
+                        <div class="project-links">
+                            <a href="YOUR_GITHUB_LINK" target="_blank" rel="noopener noreferrer" class="project-link"><i class="fa-brands fa-github"></i> View on GitHub</a>
+                            <a href="YOUR_PAPER_LINK" target="_blank" rel="noopener noreferrer" class="project-link"><i class="fa-solid fa-file-pdf"></i> Read the Paper</a>
+                        </div>
+
+                    </div>
+
+                    <!-- === 卡片 2: 进行中的项目 === -->
+                    <div class="project-card in-progress">
+                        <div class="project-header">
+                            <h2 class="project-title">Real-time Crop Disease Detection System</h2>
+                            <div class="status-badge">In Progress</div>
+                            <div class="project-meta">
+                                <span><i class="fa-solid fa-calendar-alt"></i> Started June 2024</span>
+                                <span><i class="fa-solid fa-user"></i> Personal Project</span>
+                                <span><i class="fa-solid fa-lightbulb"></i> Self-Initiated Research</span>
+                            </div>
+                        </div>
+
+                        <div class="project-content">
+                            <h3>Idea</h3>
+                            <p>Developing a lightweight, real-time system using React and FastAPI to help farmers detect common crop diseases and analyze soil conditions from a simple photo. The core idea is to deploy a highly optimized computer vision model that can run efficiently on low-power devices or via a fast API endpoint.</p>
+                        </div>
+
+                        <div class="project-links upcoming">
+                            <p>GitHub repository and detailed documentation coming soon.</p>
+                        </div>
+                        
+                    </div>
+
+                    <!-- 您可以在这里添加更多的 .project-card -->
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer 将被动态加载到此占位符中 -->
+    <footer class="site-footer" id="footer-placeholder"></footer>
+
+    <!-- 主脚本，用于移动菜单和加载组件 -->
+    <script src="scripts.js"></script>
+
+</body>
+</html>
