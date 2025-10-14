@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>yuuphoria_in_dystopia</title>
+
+    <link rel="icon" href="/images/your-logo.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="landing-body">
+
+    <a href="profile.html" class="landing-link">
+        <div class="landing-container">
+            <svg class="time-chart" viewBox="0 0 200 200">
+                <circle class="time-track" cx="100" cy="100" r="90"></circle>
+                <circle class="time-track" cx="100" cy="100" r="75"></circle>
+                <circle class="time-track" cx="100" cy="100" r="60"></circle>
+                
+                <circle class="time-arc" id="hours-arc" cx="100" cy="100" r="90"></circle>
+                <circle class="time-arc" id="minutes-arc" cx="100" cy="100" r="75"></circle>
+                <circle class="time-arc" id="seconds-arc" cx="100" cy="100" r="60"></circle>
+            </svg>
+
+            <p class="landing-phrase">it's my time, time to shine.</p>
+        </div>
+    </a>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hoursArc = document.getElementById('hours-arc');
+            const minutesArc = document.getElementById('minutes-arc');
+            const secondsArc = document.getElementById('seconds-arc');
+
+            // Get the radius from the SVG circle elements
+            const radiusH = hoursArc.r.baseVal.value;
+            const radiusM = minutesArc.r.baseVal.value;
+            const radiusS = secondsArc.r.baseVal.value;
+
+            // Calculate the circumference of each circle
+            const circumferenceH = 2 * Math.PI * radiusH;
+            const circumferenceM = 2 * Math.PI * radiusM;
+            const circumferenceS = 2 * Math.PI * radiusS;
+
+            // Set the stroke-dasharray to the circumference
+            hoursArc.style.strokeDasharray = circumferenceH;
+            minutesArc.style.strokeDasharray = circumferenceM;
+            secondsArc.style.strokeDasharray = circumferenceS;
+
+            function updateClock() {
+                const now = new Date();
+                const hours = now.getHours() % 12; // 12-hour format
+                const minutes = now.getMinutes();
+                const seconds = now.getSeconds();
+                const milliseconds = now.getMilliseconds();
+
+                // Calculate the progress for each hand
+                const hoursProgress = (hours / 12) + (minutes / (12 * 60));
+                const minutesProgress = minutes / 60 + (seconds / (60 * 60));
+                const secondsProgress = (seconds + milliseconds / 1000) / 60;
+
+                // Calculate the dash offset
+                const hoursOffset = circumferenceH * (1 - hoursProgress);
+                const minutesOffset = circumferenceM * (1 - minutesProgress);
+                const secondsOffset = circumferenceS * (1 - secondsProgress);
+
+                // Apply the offset to the SVG arcs
+                hoursArc.style.strokeDashoffset = hoursOffset;
+                minutesArc.style.strokeDashoffset = minutesOffset;
+                secondsArc.style.strokeDashoffset = secondsOffset;
+
+                // Request the next frame to create a smooth animation
+                requestAnimationFrame(updateClock);
+            }
+
+            // Start the clock animation
+            updateClock();
+        });
+    </script>
+
+</body>
+</html>
