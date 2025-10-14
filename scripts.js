@@ -6,24 +6,40 @@
 
 document.addEventListener("DOMContentLoaded", function() {
 
-    // --- 1. Reusable Component Loader ---
-    // This function fetches the content of a file (like header.html) 
-    // and injects it into a specified element on the page.
-    const loadComponent = (elementId, filePath) => {
+    // --- Mobile Menu Toggle Function ---
+    // This function finds the menu button and adds the click event.
+    // We will call this function AFTER the header has been loaded.
+    const initializeMobileMenu = () => {
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileNav = document.getElementById('mobile-nav');
+
+        if (menuToggle && mobileNav) {
+            menuToggle.addEventListener('click', function() {
+                menuToggle.classList.toggle('active');
+                mobileNav.classList.toggle('active');
+            });
+        }
+    };
+
+    // --- Reusable Component Loader ---
+    // This function fetches HTML content and injects it into the page.
+    // It now accepts a 'callback' function to run after loading is complete.
+    const loadComponent = (elementId, filePath, callback) => {
         const element = document.getElementById(elementId);
-        // Only proceed if the placeholder element exists on the page
         if (element) {
             fetch(filePath)
                 .then(response => {
-                    // Check if the file was found
                     if (!response.ok) {
                         throw new Error(`Failed to load ${filePath}: ${response.statusText}`);
                     }
                     return response.text();
                 })
                 .then(data => {
-                    // Place the loaded HTML content into the placeholder
                     element.innerHTML = data;
+                    // If a callback function was provided, execute it now.
+                    if (callback) {
+                        callback();
+                    }
                 })
                 .catch(error => {
                     console.error("Error loading component:", error);
@@ -32,26 +48,10 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     };
 
-    // Load the header and footer into their respective placeholders
-    loadComponent("header-placeholder", "header.html");
+    // Load the footer.
     loadComponent("footer-placeholder", "footer.html");
 
+    // Load the header, and AFTER it's loaded, initialize the mobile menu.
+    loadComponent("header-placeholder", "header.html", initializeMobileMenu);
 
-    // --- 2. Mobile Menu Toggle ---
-    // We need to wait a moment for the header to be loaded before we can find the menu button.
-    // A simple timeout is a straightforward way to do this.
-    setTimeout(() => {
-        const menuToggle = document.getElementById('menu-toggle');
-        const mobileNav = document.getElementById('mobile-nav');
-
-        if (menuToggle && mobileNav) {
-            menuToggle.addEventListener('click', function() {
-                // Toggle the 'active' class on both the button (for the 'X' animation)
-                // and the nav container (to slide it into view).
-                menuToggle.classList.toggle('active');
-                mobileNav.classList.toggle('active');
-            });
-        }
-    }, 50); // 50 milliseconds should be enough for the local file to load.
-
-});
+}); // This is the correct closing brace for the 'DOMContentLoaded' event listener.
