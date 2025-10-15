@@ -456,7 +456,7 @@ main section:nth-child(even) {
 .hero-buttons {
     display: flex;
     gap: 1rem;
-    margin-top: 2rem;
+    margin-top: 1.5rem;
 }
 .hero-photo {
     flex: 1;
@@ -587,34 +587,138 @@ main section:nth-child(even) {
     .timeline-item { padding-left: 40px; }
 }
 
-/* In your ".projects-grid" rule, add the 'align-items' property */
-.projects-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    align-items: stretch; /* ADD THIS LINE */
+/* --- 7. Page-Specific Styles: Programs Page --- */
+
+.programs-section {
+    padding: 10rem 5% 6rem; /* 顶部留出更多空间以避开固定的 Header */
+    background-color: #fbf8f3; /* 给页面一个淡淡的背景色以区分 */
+    min-height: 100vh;
 }
 
-/* In your ".project-content p" rule, change 'flex-grow' to 'min-height' */
+.page-title {
+    font-size: 3rem;
+    font-weight: 700;
+    text-align: center;
+    color: var(--color-text);
+}
+
+.page-subtitle {
+    font-size: 1.1rem;
+    text-align: center;
+    color: var(--color-text-light);
+    max-width: 60ch;
+    margin: 1rem auto 4rem;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* 默认单列 */
+    gap: 2.5rem;
+    align-items: stretch;
+}
+
+.project-card {
+    background-color: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(58, 93, 108, 0.1);
+}
+
+.project-header {
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.project-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+}
+
+.project-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem 1.5rem; /* 行间距和列间距 */
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+}
+
+.project-meta span {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.project-content h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+    color: var(--color-text);
+}
+
 .project-content p {
     color: var(--color-text-light);
     line-height: 1.7;
-    min-height: 100px; /* CHANGE 'flex-grow: 1' TO THIS */
+    min-height: 100px; 
 }
 
-/* In your ".status-badge" rule, adjust the position slightly */
+.project-links {
+    margin-top: auto; /* Pushes the links to the bottom of the card */
+    padding-top: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+/* "In Progress" 项目的特殊样式 */
+.project-card.in-progress {
+border-left: 4px solid var(--color-secondary-accent); /* 左侧的绿色边框 */
+}
+
 .status-badge {
     position: absolute;
-    top: 2rem;   /* CHANGE THIS */
-    right: 2rem; /* CHANGE THIS */
-    background-color: #28a745;
+    top: 2.5rem;
+    right: 2.5rem;
+    background-color: var(--color-secondary-accent);
     color: white;
     font-size: 0.8rem;
     font-weight: 600;
     padding: 4px 10px;
     border-radius: 99px;
-    animation: pulse 2s infinite;
+    animation: pulse-secondary 2s infinite;
 }
+
+.project-links.upcoming p {
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+    font-style: italic;
+}
+
+/* 呼吸动画 */
+@keyframes pulse {
+   0% { box-shadow: 0 0 0 0 rgba(217, 124, 98, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(217, 124, 98, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(217, 124, 98, 0); }
+}
+
+/* 响应式设计: 桌面端变为两列网格 */
+@media (min-width: 992px) {
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 
 /* --- 8. Page-Specific Styles: Journey Page --- */
 
