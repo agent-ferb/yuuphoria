@@ -757,13 +757,13 @@ main section:nth-child(even) {
     font-weight: 600;
     padding: 4px 10px;
     border-radius: 99px;
-    animation: pulse-secondary 2s infinite; /* 你可以暂时注释掉动画，方便调试 */
+    animation: pulse 2s infinite; /* 你可以暂时注释掉动画，方便调试 */
 }
 
 /* “即将推出”文字的样式 */
 .links-upcoming p {
     font-size: 0.9rem;
-    color: var(--color-primary-accent);
+    color: var(--color-tertiary-accent);
     font-style: italic;
     font-weight: bold;
     margin: 0; /* 最好重置一下p标签的默认外边距 */
