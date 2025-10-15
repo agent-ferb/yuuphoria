@@ -621,7 +621,15 @@ main section:nth-child(even) {
     border-bottom: 1px solid var(--color-border);
     padding-bottom: 1.5rem;
     margin-bottom: 1.5rem;
-    position: relative;
+    position: relative; /* Keep this for other potential uses if needed */
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Aligns items to the top */
+    gap: 1rem; /* Adds space between text and badge */
+}
+
+.project-header-main {
+    flex-grow: 1; /* Allows the main content to take up available space */
 }
 
 .project-title {
@@ -672,9 +680,8 @@ border-left: 4px solid var(--color-secondary-accent); /* 左侧的绿色边框 *
 }
 
 .status-badge {
-    position: absolute;
-    top: 2.5rem;
-    right: 2.5rem;
+    flex-shrink: 0; /* Prevents the badge from shrinking */
+    margin-top: 4px; /* A small adjustment for better vertical alignment with the title */
     background-color: var(--color-secondary-accent);
     color: white;
     font-size: 0.8rem;
@@ -702,6 +709,17 @@ border-left: 4px solid var(--color-secondary-accent); /* 左侧的绿色边框 *
 @media (min-width: 992px) {
     .projects-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .project-header {
+        flex-direction: column; /* Stack the badge below the text */
+        align-items: flex-start;
+    }
+
+    .status-badge {
+        margin-top: 1rem; /* Add some space when stacked */
     }
 }
 
