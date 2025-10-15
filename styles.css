@@ -309,8 +309,7 @@ body {
 .site-footer {
     width: 100%;
     padding: 3rem 5%;
-    background-color: var(--color-background);
-    border-top: 1px solid var(--color-border);
+    background-color: var(--color-primary-accent);
     margin-top: 4rem;
 }
 
@@ -321,7 +320,7 @@ body {
     max-width: 1400px;
     margin: 0 auto;
     font-family: var(--font-main);
-    color: var(--color-text-light);
+    color: var(--color-text);
     font-size: 0.9rem;
 }
 
@@ -354,25 +353,6 @@ body {
 
 .footer-action {
     text-align: right;
-}
-
-.back-to-top-link {
-    text-decoration: none;
-    color: var(--color-text-light);
-    transition: color 0.3s ease;
-}
-
-.back-to-top-link:hover {
-    color: var(--color-text);
-}
-
-.back-to-top-link i {
-    margin-left: 0.5rem;
-    transition: transform 0.3s ease;
-}
-
-.back-to-top-link:hover i {
-    transform: translateY(-2px);
 }
 
 /* --- Responsive Adjustments for Footer --- */
@@ -701,8 +681,9 @@ border-left: 4px solid var(--color-secondary-accent); /* 左侧的绿色边框 *
 
 .project-links.upcoming p {
     font-size: 0.9rem;
-    color: var(--color-text-light);
+    color: var(--color-primary-accent);
     font-style: italic;
+    font-weight: bold;
 }
 
 /* 呼吸动画 */
