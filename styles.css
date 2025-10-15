@@ -14,9 +14,7 @@
 
 /* --- 1. CSS Variables (Root) --- */
 :root {
-     /* 英文主字体 */
-    --font-english: 'Lora', serif;
-    /* 中文内容字体栈: 优先使用 Inter, 中文回退到 Noto Sans SC */
+    --font-main: 'Lora', serif;
     --font-chinese-stack: 'Lora', "SimSun", serif;
 
     --color-text: #3A5D6C;          /* Deep Blue/Teal for main text */
@@ -53,28 +51,50 @@ body {
     border: 1px solid transparent; /* Reserve space for border */
     cursor: pointer;
     transition: all 0.3s ease;
+    background-color: transparent;
+    
+    /* --- Key changes for the new effect --- */
+    position: relative; /* Required for the pseudo-element glow */
+    z-index: 1; /* Ensures text is above the glow */
+    border: none; /* Removed the border entirely */
+    color: var(--color-text); /* Set text color */
+    transition: color 0.4s ease; /* Smooth transition for text color */
 }
 
 /* Primary Button Modifier (Solid) */
 .btn.btn-primary {
-    background-color: var(--color-text);
-    color: var(--color-background);
+    color: var(--color-text);
+    border-color: transparent;
+    /* 为动画效果做准备 */
+    will-change: transform; 
 }
 
 .btn.btn-primary:hover {
-    opacity: 0.8;
+    animation: breathing-glow 2s ease-in-out infinite;
+}
+
+/* --- Keyframe Animations --- */
+@keyframes breathing-glow {
+    0% {
+        box-shadow: 0 0 10px 2px hsla(from var(--color-secondary-accent) h s l / 0.2);
+    }
+    50% {
+        box-shadow: 0 0 25px 8px hsla(from var(--color-secondary-accent) h s l / 0.5);
+    }
+    100% {
+        box-shadow: 0 0 10px 2px hsla(from var(--color-secondary-accent) h s l / 0.2);
+    }
 }
 
 /* Secondary Button Modifier (Outline) */
 .btn.btn-secondary {
-    background-color: transparent;
-    color: var(--color-text);
-    border-color: var(--color-text); /* Use the transparent border */
+    border-color: var(--color-primary-accent);
+    color: var(--color-primary-accent);
 }
 
 .btn.btn-secondary:hover {
-    background-color: var(--color-text);
-    color: var(--color-background);
+    background-color: var(--color-primary-accent);
+    color: var(--color-background); /* 文字变为背景色，以保证清晰可读 */
 }
 
 /* --- 4. Header & Navigation Styles --- */
