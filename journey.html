@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,10 +12,9 @@
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body id="top">
 
     <header class="site-header" id="header-placeholder"></header>
@@ -37,85 +37,66 @@
     </div>
 
     <main>
-        <section class="journey-section">
+       <section class="journey-section">
             <div class="container">
                 <h1 class="page-title">My Journey</h1>
-                <p class="page-subtitle">A collection of thoughts, essays, and moments from my travels.</p>
+                <p class="page-subtitle">A collection of thoughts, essays, and moments captured in time.</p>
                 
                 <div class="journey-feed">
-                    <article class="journey-post travel-post">
-                        <header class="post-header">
-                            <h2 class="post-title">Adventures in the Alps</h2>
-                        </header>
-                        
-                        <div class="swiper travel-gallery">
 
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide"><img src="path/to/alps-photo-1.jpg" alt="View from the mountain top"></div>
-                                <div class="swiper-slide"><img src="path/to/alps-photo-2.jpg" alt="A serene alpine lake"></div>
-                                <div class="swiper-slide"><img src="path/to/alps-photo-3.jpg" alt="Hiking trail in the alps"></div>
+                    <article class="card card-horizontal post-card">
+                        <div class="post-card-image">
+                            <img src="path/to/your-photo-1.jpg" alt="Description of the first image">
+                        </div>
+
+                        <div class="post-card-content">
+                            <h2 class="post-title">On Finding Focus</h2>
+
+                            <div class="post-text">
+                                <p>In a world of constant notifications, finding a quiet space for deep work has become a luxury. This essay explores the techniques I've found helpful in reclaiming focus and fostering creativity amidst the noise.</p>
                             </div>
 
-                            <div class="swiper-button-next"></div>
-                            <div class="swiper-button-prev"></div>
-                            <div class="swiper-pagination"></div>
                         </div>
-
-                        <div class="post-content">
-                            <p>My recent trip to the Swiss Alps was a breathtaking experience. The sheer scale of the mountains and the tranquility of the lakes provided a much-needed reset and a source of new inspiration.</p>
-                        </div>
-
                     </article>
 
-                    <article class="journey-post text-post" lang="zh-CN">
-                         
-                        <header class="post-header">
+                    <article class="card card-horizontal post-card" lang="zh-CN">
+                        <div class="post-card-image">
+                            <img src="path/to/your-photo-2.jpg" alt="Description of the second image">
+                        </div>
+
+                        <div class="post-card-content">
                             <h2 class="post-title">一次关于“极简”的思考</h2>
-                        </header>
 
-                        <div class="post-content">
-                            <p>“少即是多”，这句设计界的至理名言，在生活中同样适用。我们时常被过剩的信息、选择和物品所淹没，却忘了真正能带来内心平静的，往往是那些最纯粹、最本质的东西。这次的项目经历，让我对代码的“极简”有了更深的体会...</p>
-                            <p>代码的优雅，不在于技巧的堆砌，而在于逻辑的清晰与表达的直接。一个好的函数，就像一首好诗，用最少的语言传递最丰富的信息。</p>
+                            <div class="post-text">
+                                <p>“少即是多”，这句设计界的至理名言，在生活中同样适用。我们时常被过剩的信息、选择和物品所淹没，却忘了真正能带来内心平静的，往往是那些最纯粹、最本质的东西。</p>
+                            </div>
+
                         </div>
                     </article>
-                    
-                    </div>
+
+                    <article class="card card-horizontal post-card">
+                         <div class="post-card-image">
+                            <img src="path/to/your-photo-3.jpg" alt="Description of the third image">
+                        </div>
+
+                        <div class="post-card-content">
+                            <h2 class="post-title">Notes from a Mountain Hike</h2>
+
+                            <div class="post-text">
+                                <p>The rhythm of walking, the crisp mountain air, the panoramic views—hiking is more than just exercise; it's a moving meditation. Each step is a reminder to be present in the moment.</p>
+                            </div>
+
+                        </div>
+                    </article>
+
+                </div>
             </div>
         </section>
     </main>
 
     <footer class="site-footer" id="footer-placeholder"></footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     
     <script src="scripts.js"></script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const swiper = new Swiper('.swiper', {
-                // 可选参数
-                loop: true, // 循环播放
-                grabCursor: true, // 鼠标变为抓手形状
-
-                // 分页器
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true,
-                },
-
-                // 导航箭头
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                },
-
-                // 键盘控制
-                keyboard: {
-                    enabled: true,
-                },
-            });
-        });
-    </script>
     
 </body>
 </html>
