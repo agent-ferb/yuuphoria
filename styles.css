@@ -213,61 +213,44 @@ body {
 }
 
 /* 2. 中间导航 (使用 ID 提升优先级，确保生效) */
-/* 2. 中间导航 (最终修正版) */
+
+/* 2. 中间导航 (悬浮下划线效果) */
 .header-nav-center {
     display: flex;
     gap: 3rem;
 }
 
-/* 默认状态 */
 .header-nav-center a {
-    font-family: var(--font-main); /* 确保字体正确 */
     font-weight: 500;
     font-size: 1rem;
-    color: var(--color-text-light); /* 默认文字颜色 */
-    text-decoration: none; /* 默认无下划线 */
+    text-decoration: none;
+    color: var(--color-text-light);
     position: relative;
-    padding: 0.5rem 0.2rem;
+    padding-bottom: 0.5rem; /* 为下划线留出空间 */
     transition: color 0.3s ease;
 }
 
-/* 伪元素基础设置 (为 active 状态的边框做准备) */
-.header-nav-center a::before,
+.header-nav-center a:hover {
+    color: var(--color-text);
+}
+
 .header-nav-center a::after {
     content: '';
     position: absolute;
+    bottom: 0;
     left: 0;
     width: 100%;
     height: 1.5px;
     background-color: var(--color-text);
-    transform: scaleX(0); /* 默认隐藏 */
-    transition: transform 0.3s ease;
+    
+    /* 核心动画逻辑 */
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-.header-nav-center a::before {
-    top: 0;
-}
-.header-nav-center a::after {
-    bottom: 0;
-}
-
-/* 悬浮状态 (非激活时) */
-.header-nav-center a:hover:not(.active) {
-    color: var(--color-text);
-    text-decoration: underline; /* 只在这里添加原生下划线 */
-    text-underline-offset: 6px; /* 让下划线与文字有点距离，更好看 */
-}
-
-/* 激活状态 */
-.header-nav-center a.active {
-    color: var(--color-text); /* 激活时文字颜色加深 */
-    text-decoration: none; /* 激活时移除下划线，优先显示边框 */
-}
-
-/* 激活状态的边框 */
-.header-nav-center a.active::before,
-.header-nav-center a.active::after {
-    transform: scaleX(1); /* 只在激活时显示上下边框 */
+.header-nav-center a:hover::after {
+    transform: scaleX(1);
 }
 
 /* 3. 社交图标 */
