@@ -23,6 +23,7 @@
     --color-border: #e2d8c7;        /* A slightly darker version of the background for borders */
     --color-primary-accent: #7AB6B1;/* Calming Teal for primary buttons and links */
     --color-secondary-accent: #D97C62;/* Terracotta for hover effects or special CTAs */
+    --color-tertiary-accent: #A8C3D1;
 
     --color-card-1: #A57E74; /* Warm Brown */
     --color-card-2: #D79E8F; /* Muted Rose */
@@ -143,7 +144,7 @@ body {
      * 默认将卡片内所有文字设为半透明奶油色。
      * 这将自动应用于 <p> 标签和 <li> 标签。
      */
-    color: rgba(240, 231, 216, 0.85); /* Semi-transparent cream */
+    color: var(--color-border); /* Semi-transparent cream */
 }
 
 /* 3. 单独将标题设为不透明的奶油色，以示强调 */
@@ -684,7 +685,6 @@ main section:nth-child(even) {
     flex-wrap: wrap;
     gap: 0.8rem 1.5rem; /* 行间距和列间距 */
     font-size: 0.9rem;
-    color: var(--color-text-light);
 }
 
 .project-meta span {
@@ -743,7 +743,7 @@ main section:nth-child(even) {
 
 /* 为“进行中”卡片添加左侧边框 */
 .project-card.in-progress {
-    border-left: 4px solid var(--color-secondary-accent);
+    border-left: 5px solid var(--color-tertiary-accent);
 }
 
 /* “进行中”状态徽章的样式 */
@@ -751,7 +751,7 @@ main section:nth-child(even) {
     display: inline-block; /* 确保 display 属性在这里被正确设置 */
     flex-shrink: 0;
     margin-top: 4px;
-    background-color: var(--color-secondary-accent);
+    background-color: var(--color-tertiary-accent-accent);
     color: white;
     font-size: 0.8rem;
     font-weight: 600;
