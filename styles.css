@@ -153,6 +153,32 @@ body {
     color: var(--color-background); /* Solid cream */
 }
 
+/* 这是组件的容器，负责整体布局，如居中对齐和与下方内容的间距 */
+.page-header {
+    text-align: center;
+    margin-bottom: 3.5rem; /* 可根据需要调整标题区域与下方内容的距离 */
+}
+
+/* --- Reusable Title Component --- */
+/* 这是主标题 (h1) 的样式 */
+.page-header-title {
+    font-size: 2.8rem; /* 字体大小 */
+    font-weight: 700;  /* 字体粗细 */
+    color: var(--color-text);
+    margin-top: 0;
+    margin-bottom: 1rem; /* 标题与副标题之间的距离 */
+}
+
+/* 这是副标题 (p) 的样式 */
+.page-header-subtitle {
+    font-size: 1.1rem;
+    color: var(--color-text-light);
+    line-height: 1.7;
+    max-width: 700px; /* 限制最大宽度，防止在宽屏上过于拉伸 */
+    margin-left: auto;   /* 配合 max-width 实现居中 */
+    margin-right: auto;  /* 配合 max-width 实现居中 */
+}
+
 /* --- 4. Header & Navigation Styles --- */
 
 /* 桌面端 Header */
@@ -636,21 +662,6 @@ main section:nth-child(even) {
     min-height: 100vh;
 }
 
-.page-title {
-    font-size: 3rem;
-    font-weight: 700;
-    text-align: center;
-    color: var(--color-text);
-}
-
-.page-subtitle {
-    font-size: 1.1rem;
-    text-align: center;
-    color: var(--color-text-light);
-    max-width: 60ch;
-    margin: 1rem auto 4rem;
-}
-
 .projects-grid {
     display: grid;
     grid-template-columns: 1fr; /* 默认单列 */
@@ -799,22 +810,6 @@ main section:nth-child(even) {
 .journey-section {
     padding: 10rem 5% 6rem;
     background-color: #fdfaf5; /* A very light, complementary background */
-}
-
-.page-title {
-    font-size: 3rem;
-    font-weight: 700;
-    text-align: center;
-    color: var(--color-text);
-    font-family: 'Lora', serif;
-}
-
-.page-subtitle {
-    font-size: 1.1rem;
-    text-align: center;
-    color: var(--color-text-light);
-    max-width: 60ch;
-    margin: 1rem auto 4rem;
 }
 
 .journey-feed {
