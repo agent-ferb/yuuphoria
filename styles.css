@@ -801,8 +801,9 @@ main section:nth-child(even) {
 
 .journey-section {
     padding: 10rem 5% 6rem;
-    background-color: #fdfaf5; /* A very light, complementary background */
-}
+    background: url("images/jou_pattern.svg") no-repeat center/cover;
+} /* A very light, complementary background */
+
 
 .journey-feed {
     display: grid;
