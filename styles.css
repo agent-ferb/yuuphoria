@@ -15,14 +15,16 @@
 /* --- 1. CSS Variables (Root) --- */
 :root {
      /* 英文主字体 */
-    --font-english: 'Inter', sans-serif;
+    --font-english: 'Lora', serif;
     /* 中文内容字体栈: 优先使用 Inter, 中文回退到 Noto Sans SC */
-    --font-chinese-stack: 'Inter', "Noto Sans SC", sans-serif;
+    --font-chinese-stack: 'Lora', "SimSun", serif;
 
-    --color-text: #1a1a1a;
-    --color-text-light: #555;
-    --color-background: #ffffff;
-    --color-border: #eaeaea;
+    --color-text: #3A5D6C;          /* Deep Blue/Teal for main text */
+    --color-text-light: #758a95;    /* A slightly lighter, muted version of the main text color */
+    --color-background: #F0E7D8;    /* Cream for the main background */
+    --color-border: #e2d8c7;        /* A slightly darker version of the background for borders */
+    --color-primary-accent: #7AB6B1;/* Calming Teal for primary buttons and links */
+    --color-secondary-accent: #D97C62;/* Terracotta for hover effects or special CTAs */
 }
 
 /* --- 2. Base & Typography Styles (Global) --- */
@@ -36,13 +38,10 @@ body {
     font-family: var(--font-main);
     background-color: var(--color-background);
     color: var(--color-text);
-    /* 英文为主的网站，默认行高适合英文 */
     line-height: 1.6;
 }
 
 /* --- 3. Reusable Components (Buttons, etc.) --- */
-
-/* Base Button Style */
 .btn {
     display: inline-block;
     padding: 12px 28px;
