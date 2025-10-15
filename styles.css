@@ -81,6 +81,15 @@ body {
 .btn.btn-secondary {
     border-color: var(--color-primary-accent);
     color: var(--color-primary-accent);
+
+    /* Original padding was 12px 28px. This is a significant reduction. */
+    padding: 4px 12px;
+    
+    /* Original font-size was 1rem. This is a noticeable but readable reduction. */
+    font-size: 0.8rem;
+    
+    /* Optional: Slightly reduce the border radius to match the smaller size */
+    border-radius: 6px;
 }
 
 .btn.btn-secondary:hover {
@@ -414,8 +423,9 @@ main section:nth-child(even) {
     gap: 4rem;
 }
 .hero-text { flex: 1.5; }
+
 .hero-text h1 {
-    font-size: 4rem;
+    font-size: 3.6rem;
     font-weight: 700;
     color: var(--color-text);
     line-height: 1.1;
@@ -430,7 +440,7 @@ main section:nth-child(even) {
     display: flex;
     flex-direction: column;
     gap: 0.8rem;
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: var(--color-text-light);
 }
 .fact-item {
@@ -446,7 +456,7 @@ main section:nth-child(even) {
 .hero-buttons {
     display: flex;
     gap: 1rem;
-    margin-top: 2.5rem;
+    margin-top: 2rem;
 }
 .hero-photo {
     flex: 1;
