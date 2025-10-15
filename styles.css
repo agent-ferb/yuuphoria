@@ -213,6 +213,11 @@ body {
 }
 
 /* 2. 中间导航 (使用 ID 提升优先级，确保生效) */
+.header-nav-center {
+    display: flex;
+    gap: 3rem;
+}
+
 /* Pseudo-element base styles */
 .header-nav-center a::before,
 .header-nav-center a::after {
