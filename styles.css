@@ -801,7 +801,7 @@ main section:nth-child(even) {
 
 .journey-section {
     padding: 10rem 5% 6rem;
-    background: url("images/jou_pattern.svg") no-repeat center/cover;
+    background: url("images/jou_pattern.svg") repeat center;
     background-size: 12.5%;
 } /* A very light, complementary background */
 
