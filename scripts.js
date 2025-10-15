@@ -21,6 +21,28 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     };
 
+    // --- NEW: Active Navigation Link Logic ---
+    // This function finds the current page link and adds the 'active' class.
+    const initializeActiveNavLinks = () => {
+        const navLinks = document.querySelectorAll('.header-nav-center a');
+        const currentPath = window.location.pathname;
+
+        navLinks.forEach(link => {
+            const linkPath = link.getAttribute('href');
+
+            // Handle root path case for index.html
+            if (linkPath === "index.html" && (currentPath === '/' || currentPath.endsWith('/index.html'))) {
+                link.classList.add('active');
+                return;
+            }
+            
+            // Handle other pages, ensuring it's not the homepage link
+            if (linkPath !== "index.html" && currentPath.endsWith(linkPath)) {
+                link.classList.add('active');
+            }
+        });
+    };
+
     // --- Reusable Component Loader ---
     // This function fetches HTML content and injects it into the page.
     // It now accepts a 'callback' function to run after loading is complete.
@@ -51,7 +73,10 @@ document.addEventListener("DOMContentLoaded", function() {
     // Load the footer.
     loadComponent("footer-placeholder", "footer.html");
 
-    // Load the header, and AFTER it's loaded, initialize the mobile menu.
-    loadComponent("header-placeholder", "header.html", initializeMobileMenu);
+    // Load the header, and AFTER it's loaded, initialize BOTH the mobile menu and the active link logic.
+    loadComponent("header-placeholder", "header.html", () => {
+        initializeMobileMenu();
+        initializeActiveNavLinks();
+    });
 
 }); // This is the correct closing brace for the 'DOMContentLoaded' event listener.
