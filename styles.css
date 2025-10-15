@@ -23,7 +23,7 @@
     --color-border: #e2d8c7;        /* A slightly darker version of the background for borders */
     --color-primary-accent: #7AB6B1;/* Calming Teal for primary buttons and links */
     --color-secondary-accent: #D97C62;/* Terracotta for hover effects or special CTAs */
-    --color-tertiary-accent: #A8C3D1;
+    --color-tertiary-accent: #108B96;
 
     --color-card-1: #A57E74; /* Warm Brown */
     --color-card-2: #D79E8F; /* Muted Rose */
@@ -743,7 +743,7 @@ main section:nth-child(even) {
 
 /* 为“进行中”卡片添加左侧边框 */
 .project-card.in-progress {
-    border-left: 5px solid var(--color-tertiary-accent);
+    border-left: 6px solid var(--color-tertiary-accent);
 }
 
 /* “进行中”状态徽章的样式 */
@@ -751,7 +751,7 @@ main section:nth-child(even) {
     display: inline-block; /* 确保 display 属性在这里被正确设置 */
     flex-shrink: 0;
     margin-top: 4px;
-    background-color: var(--color-tertiary-accent-accent);
+    background-color: var(--color-tertiary-accent);
     color: white;
     font-size: 0.8rem;
     font-weight: 600;
@@ -771,9 +771,9 @@ main section:nth-child(even) {
 
 /* 呼吸动画 */
 @keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(217, 124, 98, 0.7); }
-    70% { box-shadow: 0 0 0 10px rgba(217, 124, 98, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(217, 124, 98, 0); }
+    0% { box-shadow: 0 0 0 0 rgba(16, 139, 150, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(16, 139, 150, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(16, 139, 150, 0); }
 }
 
 /* 响应式设计: 桌面端变为两列网格 */
