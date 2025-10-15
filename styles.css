@@ -224,7 +224,7 @@ body {
     text-decoration: none;
     color: var(--color-text-light);
     position: relative;
-    padding-bottom: 0.5rem 0.2rem;
+    padding: 0.5rem 0.2rem;
     transition: color 0.3s ease;
 }
 
