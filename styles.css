@@ -52,37 +52,28 @@ body {
     cursor: pointer;
     transition: all 0.3s ease;
     background-color: transparent;
-    
-    /* --- Key changes for the new effect --- */
-    position: relative; /* Required for the pseudo-element glow */
-    z-index: 1; /* Ensures text is above the glow */
-    border: none; /* Removed the border entirely */
-    color: var(--color-text); /* Set text color */
-    transition: color 0.4s ease; /* Smooth transition for text color */
 }
 
 /* Primary Button Modifier (Solid) */
 .btn.btn-primary {
     color: var(--color-text);
     border-color: transparent;
-    /* 为动画效果做准备 */
-    will-change: transform; 
 }
 
 .btn.btn-primary:hover {
-    animation: breathing-glow 2s ease-in-out infinite;
+    animation: breathing-text-glow 2s ease-in-out infinite;
 }
 
 /* --- Keyframe Animations --- */
-@keyframes breathing-glow {
+@keyframes breathing-text-glow {
     0% {
-        box-shadow: 0 0 10px 2px hsla(from var(--color-secondary-accent) h s l / 0.2);
+        box-shadow: 0 0 10px 2px hsla(from var(--color-secondary-accent) h s l / 0.5);
     }
     50% {
-        box-shadow: 0 0 25px 8px hsla(from var(--color-secondary-accent) h s l / 0.5);
+        box-shadow: 0 0 25px 8px hsla(from var(--color-secondary-accent) h s l / 0.8);
     }
     100% {
-        box-shadow: 0 0 10px 2px hsla(from var(--color-secondary-accent) h s l / 0.2);
+        box-shadow: 0 0 10px 2px hsla(from var(--color-secondary-accent) h s l / 0.5);
     }
 }
 
