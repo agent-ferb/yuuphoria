@@ -320,7 +320,7 @@ body {
     max-width: 1400px;
     margin: 0 auto;
     font-family: var(--font-main);
-    color: var(--color-text);
+    color: var(--color-background);
     font-size: 0.9rem;
 }
 
@@ -352,7 +352,12 @@ body {
 }
 
 .footer-action {
+    flex: 1;
     text-align: right;
+}
+
+.footer-action .btn-secondary {
+    background-color: var(--color-background); /* Default background is cream */
 }
 
 /* --- Responsive Adjustments for Footer --- */
