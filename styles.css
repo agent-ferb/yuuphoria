@@ -714,8 +714,10 @@ main section:nth-child(even) {
     display: grid;
     place-items: center;
     min-height: 100vh;
-    background-color: #111; /* A dark theme for a "shining" effect */
-    color: #fff;
+    /* Changed from dark theme to your new light background */
+    background-color: var(--color-background); 
+    /* Default text color now uses your main text variable */
+    color: var(--color-text); 
     overflow: hidden;
     cursor: pointer;
 }
@@ -745,33 +747,56 @@ main section:nth-child(even) {
 
 .time-track {
     fill: none;
-    stroke: rgba(255, 255, 255, 0.1); /* Faint track color */
+    /* Faint track using a transparent version of the main text color */
+    stroke: hsla(from var(--color-text) h s l / 0.15); 
     stroke-width: 8;
 }
 
 .time-arc {
     fill: none;
-    stroke: #fff; /* Shining arc color */
+    stroke: var(--color-text); 
     stroke-width: 8;
     stroke-linecap: round; /* Rounded ends for the arcs */
     transition: stroke-dashoffset 0.1s linear; /* Smooths out tiny jumps */
 }
 
-/* Different colors for each arc for a more dynamic look */
-#hours-arc { stroke: #007BFF; stroke-width: 10; } /* Example accent color */
-#minutes-arc { stroke: #ffffff; stroke-width: 8; }
-#seconds-arc { stroke: #ffffff; stroke-width: 4; opacity: 0.7; }
-
+/* Hours arc uses the vibrant Terracotta accent */
+#hours-arc { 
+    stroke: var(--color-secondary-accent); 
+    stroke-width: 10; 
+} 
+/* Minutes arc uses the calming Teal accent */
+#minutes-arc { 
+    stroke: var(--color-primary-accent); 
+    stroke-width: 8; 
+} 
+/* Seconds arc uses the lighter text color for a subtle look */
+#seconds-arc { 
+    stroke: var(--color-text-light); 
+    stroke-width: 4; 
+    opacity: 0.8;
+}
 
 .landing-phrase {
     font-family: var(--font-main);
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     font-weight: 500;
-    color: rgba(255, 255, 255, 0.7);
+    /* Changed to your designated light text color */
+    color: var(--color-text); 
     margin-top: 2.5rem;
     letter-spacing: 0.5px;
 }
 
+.landing-instruction {
+    font-family: var(--font-main); /* 确保使用英文字体 */
+    font-size: 0.9rem; /* 尺寸比主标语小一些 */
+    font-weight: 400; /* 字重轻一些 */
+    color: var(--color-text-light); /* 使用更柔和的文字颜色 */
+    opacity: 0.7; /* 降低不透明度，让它不那么突出 */
+    margin-top: 2.5rem; /* 这将在它和上面的标语之间创建出空间 */
+    letter-spacing: 0.5px;
+    text-transform: lowercase; /* 全部小写，看起来更像一个提示 */
+}
 /* A simple fade-in animation for the whole container */
 @keyframes fadeIn {
     from {
