@@ -184,11 +184,11 @@ body {
 /* 桌面端 Header */
 .site-header {
     width: 100%;
-    padding: 1.5rem 5%; /* 稍微减小垂直 padding 使其更精致 */
+    padding: 1.5rem 5%;
     position: fixed;
     top: 0;
     left: 0;
-    background-color: rgba(255, 255, 255, 0.7); /* 半透明度降低以增强可读性 */
+    background-color: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--color-border);
@@ -207,34 +207,34 @@ body {
 
 /* 1. Logo */
 .header-logo .logo-image {
-    height: 40px; /* 推荐使用 height 控制 Logo 大小 */
-    width: auto; /* 宽度自动调整以保持比例 */
-    display: block; /* 移除图片下方的额外空间 */
+    height: 40px;
+    width: auto;
+    display: block;
 }
 
-/* 2. 中间导航 */
-.header-nav-center {
+/* 2. 中间导航 (使用 ID 提升优先级，确保生效) */
+#header-placeholder .header-nav-center {
     display: flex;
     gap: 3rem;
 }
 
-.header-nav-center a {
+#header-placeholder .header-nav-center a {
     font-weight: 500;
     font-size: 1rem;
     text-decoration: none;
     color: var(--color-text-light);
     position: relative;
-    padding: 0.5rem 0.2rem;
+    padding: 0.5rem 0.2rem; /* 修正后的 padding */
     transition: color 0.3s ease;
 }
 
-.header-nav-center a:hover,
-.header-nav-center a.active { /* JS 会动态添加 .active class */
+#header-placeholder .header-nav-center a:hover,
+#header-placeholder .header-nav-center a.active {
     color: var(--color-text);
 }
 
-.header-nav-center a::before,
-.header-nav-center a::after {
+#header-placeholder .header-nav-center a::before,
+#header-placeholder .header-nav-center a::after {
     content: '';
     position: absolute;
     left: 0;
@@ -242,44 +242,39 @@ body {
     height: 1.5px;
     background-color: var(--color-text);
     transform: scaleX(0);
+    transition: none;
 }
 
-/* 定义两条线的位置 */
-.header-nav-center a::before {
-    top: 0; /* 定位到顶部 */
+#header-placeholder .header-nav-center a::before {
+    top: 0;
 }
-.header-nav-center a::after {
-    bottom: 0; /* 定位到底部 */
+#header-placeholder .header-nav-center a::after {
+    bottom: 0;
 }
 
-/* 定义悬停效果：只让下划线(::after)出现 */
-/* 使用 :not(.active) 来确保这个hover效果在链接被激活时不会触发 */
-.header-nav-center a:hover:not(.active)::after {
+#header-placeholder .header-nav-center a:hover:not(.active)::after {
     transform: scaleX(1);
-    transform-origin: center; /* 你原来的动画效果 */
+    transform-origin: center;
     transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-/* 定义激活效果：让上下边框(::before 和 ::after)同时出现 */
-.header-nav-center a.active::before,
-.header-nav-center a.active::after {
+#header-placeholder .header-nav-center a.active::before,
+#header-placeholder .header-nav-center a.active::after {
     transform: scaleX(1);
-    /* 激活时不需要动画，直接显示 */
-    transition: none;
 }
 
 /* 3. 社交图标 */
 .header-nav-social {
     display: flex;
     align-items: center;
-    gap: 1.5rem; /* 稍微减小间距 */
+    gap: 1.5rem;
 }
 
 .icon-container {
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    width: 28px;  /* 统一容器大小 */
+    width: 28px;
     height: 28px;
     transition: transform 0.3s ease;
 }
@@ -289,9 +284,9 @@ body {
 }
 
 .social-icon {
-    max-width: 100%;  /* 确保图标不会超出容器 */
+    max-width: 100%;
     max-height: 100%;
-    object-fit: contain; /* 核心：保持图标比例不变形 */
+    object-fit: contain;
     opacity: 0.7;
     transition: opacity 0.3s ease;
 }
@@ -301,8 +296,6 @@ body {
 }
 
 /* --- 移动端导航样式 --- */
-
-/* 移动端菜单容器和按钮的样式应该放在这里，而不是媒体查询内部 */
 .mobile-nav-container {
     position: fixed;
     top: 0;
@@ -324,14 +317,14 @@ body {
 }
 
 .menu-toggle {
-    display: none; /* 默认在桌面端隐藏 */
+    display: none;
     width: 24px;
     height: 18px;
     background: transparent;
     border: none;
     cursor: pointer;
     padding: 0;
-    z-index: 1001; /* 确保按钮在 Header 之上 */
+    z-index: 1001;
 }
 
 .menu-toggle span {
@@ -371,36 +364,28 @@ body {
     color: var(--color-text);
 }
 
-.mobile-nav-social {
-    display: flex;
-    gap: 2rem;
-    margin-top: 4rem;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 0 1rem;
-}
-
-.mobile-nav-social a {
-    text-decoration: none;
-    color: var(--color-text-light);
-    font-size: 1rem;
-    font-weight: 500;
-    transition: color 0.3s ease;
-}
-
-.mobile-nav-social a:hover {
-    color: var(--color-text);
-}
-
-/* 媒体查询: 只用于切换元素的显示/隐藏 */
+/* --- 媒体查询: 切换桌面/移动视图的核心逻辑 --- */
 @media (max-width: 992px) {
     .header-nav-center, .header-nav-social {
-        display: none; /* 隐藏桌面导航 */
+        display: none;
     }
     .menu-toggle {
-        display: flex; /* 显示汉堡按钮 */
+        display: flex;
         flex-direction: column;
-        justify-content: space-between; /* 调整线条间距 */
+        justify-content: space-between;
+    }
+}
+
+@media (min-width: 993px) {
+    .header-nav-center, .header-nav-social {
+        display: flex;
+    }
+    .menu-toggle {
+        display: none;
+    }
+    /* 强制隐藏手机菜单，防止窗口从窄变宽时残留 */
+    .mobile-nav-container {
+        transform: translateY(-100%) !important;
     }
 }
 
