@@ -18,15 +18,20 @@
 
     <a href="profile.html" class="landing-link">
         <div class="landing-container">
-            <svg class="time-chart" viewBox="0 0 200 200">
-                <circle class="time-track" cx="100" cy="100" r="90"></circle>
-                <circle class="time-track" cx="100" cy="100" r="75"></circle>
-                <circle class="time-track" cx="100" cy="100" r="60"></circle>
+            <div class="clock-wrapper">
+                <img src="images/land_icon.svg" class="clock-center-icon" alt="Center Icon">
+            
+                <svg class="time-chart" viewBox="0 0 200 200">
+                    <circle class="time-track" cx="100" cy="100" r="90"></circle>
+                    <circle class="time-track" cx="100" cy="100" r="75"></circle>
+                    <circle class="time-track" cx="100" cy="100" r="60"></circle>
+                    
+                    <circle class="time-arc" id="hours-arc" cx="100" cy="100" r="90"></circle>
+                    <circle class="time-arc" id="minutes-arc" cx="100" cy="100" r="75"></circle>
+                    <circle class="time-arc" id="seconds-arc" cx="100" cy="100" r="60"></circle>
+                </svg>
                 
-                <circle class="time-arc" id="hours-arc" cx="100" cy="100" r="90"></circle>
-                <circle class="time-arc" id="minutes-arc" cx="100" cy="100" r="75"></circle>
-                <circle class="time-arc" id="seconds-arc" cx="100" cy="100" r="60"></circle>
-            </svg>
+            </div>
 
             <p class="landing-phrase">it's my time, time to shine.</p>
 

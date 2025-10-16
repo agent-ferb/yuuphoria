@@ -155,8 +155,19 @@ body {
 
 /* 这是组件的容器，负责整体布局，如居中对齐和与下方内容的间距 */
 .page-header {
+    background: rgba(255, 255, 255, 0.25); /* 1. 半透明背景色，白色/25%透明度 */
+    backdrop-filter: blur(12px);          /* 2. 背景模糊，这是玻璃效果的关键 */
+    -webkit-backdrop-filter: blur(12px);  /* 兼容 Safari 浏览器 */
+    border-radius: 20px;                  /* 3. 圆角，让边缘更柔和 */
+    border: 1px solid rgba(255, 255, 255, 0.18); /* 4. 细微的亮色边框，模拟玻璃边缘高光 */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1); /* 5. 柔和的阴影，增加立体感 */
+
     text-align: center;
     margin-bottom: 3.5rem; /* 可根据需要调整标题区域与下方内容的距离 */
+    padding: 2.5rem 2rem; /* 增加内边距，让文字与玻璃边缘有呼吸空间 */
+    max-width: 800px; /* 设定一个最大宽度 */
+    margin-left: auto;  /* 配合 max-width 实现居中 */
+    margin-right: auto; /* 配合 max-width 实现居中 */
 }
 
 /* --- Reusable Title Component --- */
@@ -398,7 +409,7 @@ footer::after {
     content: "";
     position: absolute;
     inset: 0; /* 铺满整个 footer */
-    background-color: #fdfaf5;
+    background-color: rgba(253, 250, 245, 0.7);
     z-index: 1; /* 将薄膜置于背景之上 */
 }
 
@@ -938,10 +949,33 @@ main section:nth-child(even) {
     animation: fadeIn 1.5s ease-out both;
 }
 
+/* This new wrapper will act as the positioning container */
+.clock-wrapper {
+    position: relative; /* Establishes a positioning context for the icon */
+    width: 200px; /* Should match the width of your .time-chart */
+    height: 200px; /* Should match the height of your .time-chart */
+    margin: 0 auto; /* Keeps the whole clock component centered */
+}
+
+/* This styles and centers your new SVG icon */
+.clock-center-icon {
+    /* Absolute positioning to place it on top of the clock */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* The key to perfect centering */
+    
+    /* [ADJUSTABLE] Set the size of your icon */
+    width: 60px;
+    height: 60px;
+    
+    /* Ensure the icon is on top of the SVG arcs */
+    z-index: 10;
+}
+
 .time-chart {
     width: 200px;
     height: 200px;
-    margin: 0 auto;
     transform: rotate(-90deg); /* Start arcs from the top */
 }
 
@@ -981,7 +1015,6 @@ main section:nth-child(even) {
     font-family: var(--font-main);
     font-size: 1.2rem;
     font-weight: 500;
-    /* Changed to your designated light text color */
     color: var(--color-text); 
     margin-top: 2.5rem;
     letter-spacing: 0.5px;
@@ -996,6 +1029,8 @@ main section:nth-child(even) {
     margin-top: 2.5rem; /* 这将在它和上面的标语之间创建出空间 */
     letter-spacing: 0.5px;
     text-transform: lowercase; /* 全部小写，看起来更像一个提示 */
+
+    animation: breathing-effect 3s ease-in-out infinite;
 }
 /* A simple fade-in animation for the whole container */
 @keyframes fadeIn {
@@ -1004,6 +1039,19 @@ main section:nth-child(even) {
     }
     to {
         opacity: 1;
+    }
+}
+
+/* --- Animation for Breathing Effect --- */
+@keyframes breathing-effect {
+    0% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.5;
     }
 }
 
