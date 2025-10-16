@@ -384,7 +384,7 @@ body {
     width: 100%;
     padding: 3rem 5%;
     background-color: var(--color-primary-accent);
-    margin-top: 4rem;
+    margin-top: 0;
 }
 
 .footer-container {
@@ -812,7 +812,7 @@ main section:nth-child(even) {
     inset: 0; /* 顶满整个容器 */
     background: url("images/jou_pattern.svg") repeat center;
     background-size: 12.5%; /* 缩小比例，越小图案越密集 */
-    filter: blur(8px) brightness(1.1) opacity(0.4);
+    filter: blur(3px) brightness(1.05) opacity(0.25);
     z-index: 0; /* 在内容下面 */
 }
 
