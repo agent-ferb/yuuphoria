@@ -650,8 +650,8 @@ main section:nth-child(even) {
 
 .programs-section {
     padding: 10rem 5% 6rem; /* 顶部留出更多空间以避开固定的 Header */
-    background-color: #fbf8f3; /* 给页面一个淡淡的背景色以区分 */
-    min-height: 100vh;
+    background: url("images/prog_pattern.svg") repeat center / 12.5%, #fbf8f3; /* 给页面一个淡淡的背景色以区分 */
+    opacity: 0.9;
 }
 
 .projects-grid {
@@ -800,11 +800,26 @@ main section:nth-child(even) {
 /* --- 8. Page-Specific Styles: Journey Page --- */
 
 .journey-section {
+    position: relative;
     padding: 10rem 5% 6rem;
-    background: url("images/jou_pattern.svg") repeat center;
-    background-size: 12.5%;
-} /* A very light, complementary background */
+    background-color: #fdfaf5;
+    overflow: hidden;
+} 
 
+.journey-section::before {
+    content: "";
+    position: absolute;
+    inset: 0; /* 顶满整个容器 */
+    background: url("images/jou_pattern.svg") repeat center;
+    background-size: 12.5%; /* 缩小比例，越小图案越密集 */
+    filter: blur(8px) brightness(1.1) opacity(0.4);
+    z-index: 0; /* 在内容下面 */
+}
+
+.journey-section > * {
+    position: relative;
+    z-index: 1; /* 内容在模糊层之上 */
+}
 
 .journey-feed {
     display: grid;
