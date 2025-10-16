@@ -385,17 +385,13 @@ footer {
     position: relative;
     background-color: var(--color-primary-accent);
     overflow: hidden;
-    padding: 3rem 5%; /* 增加上、下空间，与上方内容保持距离 */
-}
-
-footer::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: url("images/foot_pattern.svg") repeat;
-    background-size: 12.5%;
-    opacity: 0.25; /* 稍淡，不刺眼 */
-    z-index: 0;
+    padding: 2rem 5%; /* 增加上、下空间，与上方内容保持距离 */
+    
+    background-image: url("images/foot_pattern.svg"); /* 使用 Footer 区域专属的墙纸 */
+    background-repeat: repeat;
+    background-position: top center;        /* 与上面完全一致 */
+    background-size: 180px;                 /* 与上面完全一致 */
+    background-attachment: fixed;
 }
 
 footer > * {
@@ -666,8 +662,13 @@ main section:nth-child(even) {
 
 .programs-section {
     padding: 10rem 5% 6rem; /* 顶部留出更多空间以避开固定的 Header */
-    background: url("images/prog_pattern.svg") repeat center / 12.5%, #fbf8f3; /* 给页面一个淡淡的背景色以区分 */
-    opacity: 0.9;
+    background-color: #fbf8f3;
+
+    background-image: url("images/prog_pattern.svg"); /* 使用 Program 区域专属的墙纸 */
+    background-repeat: repeat;
+    background-position: top center;        /* 统一对齐到视口顶部中心 */
+    background-size: 180px;                 /* 统一设置一个固定的尺寸 */
+    background-attachment: fixed;
 }
 
 .projects-grid {
@@ -818,7 +819,6 @@ main section:nth-child(even) {
 .journey-section {
     position: relative;
     padding: 10rem 5% 6rem;
-    background-color: #fdfaf5;
     overflow: hidden;
 } 
 
@@ -826,10 +826,16 @@ main section:nth-child(even) {
     content: "";
     position: absolute;
     inset: 0; /* 顶满整个容器 */
-    background: url("images/jou_pattern.svg") repeat center;
-    background-size: 12.5%; /* 缩小比例，越小图案越密集 */
-    filter: blur(0.3px) brightness(1.05) opacity(0.28);
     z-index: 0; /* 在内容下面 */
+    background-color: #fdfaf5;
+
+    background-image: url("images/jou_pattern.svg");
+    background-repeat: repeat;
+    background-position: top center;  /* 与其他区域的对齐点一致 */
+    background-size: 180px;           /* 与其他区域的尺寸一致 */
+    background-attachment: fixed;     /* [关键] 同样设置为 fixed */
+
+    filter: blur(0.3px) brightness(1.05) opacity(0.28);
 }
 
 .journey-section > * {
