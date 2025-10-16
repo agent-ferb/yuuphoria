@@ -385,18 +385,17 @@ footer {
     position: relative;
     background-color: var(--color-primary-accent);
     overflow: hidden;
+        padding: 4rem 5%; /* 增加上、下空间，与上方内容保持距离 */
 }
-
 footer::before {
     content: "";
     position: absolute;
     inset: 0;
-    background: url("images/prog_pattern.svg") repeat center;
+    background: url("images/foot_pattern.svg") repeat center;
     background-size: 12.5%;
     opacity: 0.25; /* 稍淡，不刺眼 */
     z-index: 0;
 }
-
 footer > * {
     position: relative;
     z-index: 1;
@@ -827,7 +826,7 @@ main section:nth-child(even) {
     inset: 0; /* 顶满整个容器 */
     background: url("images/jou_pattern.svg") repeat center;
     background-size: 12.5%; /* 缩小比例，越小图案越密集 */
-    filter: blur(1px) brightness(1.05) opacity(0.18);
+    filter: blur(0.3px) brightness(1.05) opacity(0.28);
     z-index: 0; /* 在内容下面 */
 }
 
