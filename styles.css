@@ -368,13 +368,13 @@ body {
     display: flex; /* Arranges the icons in a horizontal row */
     justify-content: center; /* Centers the icons horizontally */
     gap: 2.5rem; /* Sets the space between each icon */
-    margin-top: 2rem; /* Adds space above the icons, separating them from the main navigation links */
+    margin-top: 2.5rem; /* Adds space above the icons, separating them from the main navigation links */
 }
 
 /* This makes the icons larger and easier to tap on mobile */
 .mobile-nav-social .icon-container {
-    width: 36px;
-    height: 36px;
+    width: 28px;
+    height: 28px;
 }
 
 /* --- 媒体查询: 切换桌面/移动视图的核心逻辑 --- */
