@@ -155,7 +155,7 @@ body {
 
 /* 这是组件的容器，负责整体布局，如居中对齐和与下方内容的间距 */
 .page-header {
-    background: rgba(255, 255, 255, 0.15); /* 1. 半透明背景色，白色/25%透明度 */
+    background: rgba(255, 255, 255, 0.1); /* 1. 半透明背景色，白色/25%透明度 */
     backdrop-filter: blur(12px);          /* 2. 背景模糊，这是玻璃效果的关键 */
     -webkit-backdrop-filter: blur(12px);  /* 兼容 Safari 浏览器 */
     border-radius: 20px;                  /* 3. 圆角，让边缘更柔和 */
@@ -222,8 +222,6 @@ body {
     width: auto;
     display: block;
 }
-
-/* 2. 中间导航 (使用 ID 提升优先级，确保生效) */
 
 /* 2. 中间导航 (悬浮下划线效果) */
 .header-nav-center {
@@ -363,6 +361,20 @@ body {
 .mobile-nav a:hover,
 .mobile-nav a.active {
     color: var(--color-text);
+}
+
+/* This styles the container for the icons */
+.mobile-nav-social {
+    display: flex; /* Arranges the icons in a horizontal row */
+    justify-content: center; /* Centers the icons horizontally */
+    gap: 2.5rem; /* Sets the space between each icon */
+    margin-top: 2rem; /* Adds space above the icons, separating them from the main navigation links */
+}
+
+/* This makes the icons larger and easier to tap on mobile */
+.mobile-nav-social .icon-container {
+    width: 36px;
+    height: 36px;
 }
 
 /* --- 媒体查询: 切换桌面/移动视图的核心逻辑 --- */
