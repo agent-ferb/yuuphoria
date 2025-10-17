@@ -881,6 +881,105 @@ main section:nth-child(even) {
     object-fit: cover; /* Crops the image to fill the container */
 }
 
+/* --- NEW: Photo Stack Styles --- */
+/* 1. JS 会为多图容器添加 'photo-stack' 类 */
+.post-card-image.photo-stack {
+    position: relative; /* 用于定位图片和箭头 */
+    
+    /* 留出空间让堆叠和旋转效果更好看 */
+    padding: 20px; 
+    box-sizing: border-box;
+    
+    /* 居中照片堆 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* 允许旋转的照片溢出一点 */
+    overflow: visible; 
+}
+/* 2. 堆叠中所有照片的通用样式 */
+.photo-stack img {
+    position: absolute; /* 关键：将所有照片堆叠在一起 */
+    
+    /* 减去 padding，并添加边框 */
+    width: calc(100% - 40px);
+    height: calc(100% - 40px);
+    object-fit: cover;
+    
+    /* 实体照片样式 */
+    border: 5px solid #fff;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    border-radius: 2px;
+    
+    /* 关键：DOM 顺序改变时，平滑地播放 transform 动画 */
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    
+    /* 防止拖拽图片 */
+    pointer-events: none; 
+    user-select: none;
+}
+/* 3. 定义堆叠顺序 (z-index) 和位置 (transform) */
+/* 第 1 张 (最顶层) */
+.photo-stack img:nth-child(1) {
+    transform: rotate(3deg) scale(1);
+    z-index: 3;
+}
+/* 第 2 张 (中间) */
+.photo-stack img:nth-child(2) {
+    transform: rotate(-2deg) scale(0.97);
+    z-index: 2;
+}
+/* 第 3 张 (底层) */
+.photo-stack img:nth-child(3) {
+    transform: rotate(2deg) scale(0.94);
+    z-index: 1;
+}
+/* 第 4 张及以后 (藏在最下面，准备循环上来) */
+.photo-stack img:nth-child(n+4) {
+    transform: rotate(0) scale(0.9);
+    z-index: 0;
+    opacity: 0; /* 隐藏，但仍参与 DOM 排序 */
+}
+/* 4. 翻页箭头 */
+.stack-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100; /* 在所有照片之上 */
+    width: 35px;
+    height: 35px;
+    background: rgba(255, 255, 255, 0.95);
+    color: #333;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    font-family: 'Georgia', serif; /* 使用一个优雅的衬线字体 */
+    font-size: 1.6rem;
+    font-weight: bold;
+    line-height: 1;
+    
+    /* 默认隐藏 */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+/* 鼠标悬停在 *图片区域* 时显示箭头 */
+.post-card-image.photo-stack:hover .stack-nav {
+    opacity: 1;
+    visibility: visible;
+}
+.stack-nav:hover {
+    background: #fff;
+}
+.stack-nav-prev { left: 35px; padding-right: 2px; } /* 35px = 20px padding + 15px */
+.stack-nav-next { right: 35px; padding-left: 2px; }
+
+/* --- 原有的卡片内容样式 --- */
 .post-card-content {
     flex: 1;
     padding: 2.5rem;
@@ -910,6 +1009,28 @@ main section:nth-child(even) {
     .post-card-image {
         flex-basis: 200px; /* Give the image a fixed height on mobile */
     }
+    
+    /* 为照片堆设置特定高度 */
+    .post-card-image.photo-stack {
+        flex-basis: 220px; 
+        min-height: 220px; 
+        padding: 15px; /* 减少 padding */
+    }
+    
+    /* 调整堆叠照片的大小 */
+    .photo-stack img {
+        width: calc(100% - 30px);
+        height: calc(100% - 30px);
+    }
+    
+    /* 调整箭头 */
+    .stack-nav {
+        width: 32px;
+        height: 32px;
+        font-size: 1.4rem;
+    }
+    .stack-nav-prev { left: 25px; } /* 15px padding + 10px */
+    .stack-nav-next { right: 25px; }
     
     .post-card-content {
         padding: 2rem;
