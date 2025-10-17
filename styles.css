@@ -195,7 +195,7 @@ body {
 /* 桌面端 Header */
 .site-header {
     width: 100%;
-    padding: 1.5rem 5%;
+    padding: 1rem 5%;
     position: fixed;
     top: 0;
     left: 0;
@@ -408,7 +408,7 @@ footer {
     position: relative;
     background-color: var(--color-primary-accent);
     overflow: hidden;
-    padding: 2rem 5%; /* 增加上、下空间，与上方内容保持距离 */
+    padding: 1.5rem 5%; /* 增加上、下空间，与上方内容保持距离 */
     
     background-image: url("images/foot_pattern.svg"); /* 使用 Footer 区域专属的墙纸 */
     background-repeat: repeat;
@@ -453,7 +453,7 @@ footer > * {
 }
 
 .footer-logo-image {
-    height: 32px; /* Control logo size */
+    height: 60px; /* Control logo size */
     width: auto;
     display: block;
     opacity: 0.7; /* Subtly fade the logo for a softer look */
@@ -680,7 +680,8 @@ main section:nth-child(even) {
         flex-direction: column-reverse;
         text-align: center;
     }
-    .hero-text h1 { font-size: 3rem; }
+    .hero-text h1 { font-size: 2.5rem; }
+    .hero-text .tagline {font-size: 1.1rem;}
     .quick-facts { align-items: center; }
     .hero-buttons { justify-content: center; }
     
@@ -1073,6 +1074,11 @@ main section:nth-child(even) {
         /* 将图表尺寸从 200px 缩小到 160px */
         width: 160px;
         height: 160px;
+    }
+
+    .clock-center-icon {
+        width: 48px;
+        height: 43.2px;
     }
 
     .landing-phrase {
