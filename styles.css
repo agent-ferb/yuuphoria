@@ -875,6 +875,7 @@ main section:nth-child(even) {
 .post-card-image {
     flex: 0 0 40%; /* Image takes up 40% of the card's width */
     min-height: 250px; /* Ensures a minimum height for the card */
+    position: relative;
 }
 
 .post-card-image img {
@@ -889,7 +890,7 @@ main section:nth-child(even) {
     position: relative; /* 用于定位图片和箭头 */
     
     /* 留出空间让堆叠和旋转效果更好看 */
-    padding: 20px; 
+    padding: 35px; 
     box-sizing: border-box;
     
     /* 居中照片堆 */
@@ -905,8 +906,8 @@ main section:nth-child(even) {
     position: absolute; /* 关键：将所有照片堆叠在一起 */
     
     /* 减去 padding，并添加边框 */
-    width: calc(100% - 40px);
-    height: calc(100% - 40px);
+    width: calc(100% - 70px);
+    height: calc(100% - 70px);
     object-fit: cover;
     
     /* 实体照片样式 */
@@ -941,7 +942,7 @@ main section:nth-child(even) {
 .post-card-image.photo-stack img:nth-child(n+4) {
     transform: rotate(0) scale(0.9);
     z-index: 0;
-    opacity: 0; /* 隐藏，但仍参与 DOM 排序 */
+    opacity: 1; /* 隐藏，但仍参与 DOM 排序 */
 }
 /* 4. 翻页箭头 */
 .post-card-image.photo-stack .stack-nav {
@@ -949,40 +950,77 @@ main section:nth-child(even) {
     top: 50%;
     transform: translateY(-50%);
     z-index: 100; /* 在所有照片之上 */
-    width: 35px;
-    height: 35px;
-    background: rgba(255, 255, 255, 0.95);
-    color: #333;
-    border: none;
+
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
-    cursor: pointer;
+
+    /* --- 默认无痕状态 --- */
+    background: none;
+    border: none;
+    opacity: 0;
+    visibility: hidden;
+    backdrop-filter: none; /* 默认无滤镜 */
+
+    /* 居中 ::before 形状 */
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    font-family: 'Georgia', serif; /* 使用一个优雅的衬线字体 */
-    font-size: 1.6rem;
-    font-weight: bold;
-    line-height: 1;
+
+    /* --- 隐藏 JS 添加的文本 --- */
+    color: transparent; 
+    font-size: 0; 
     
-    /* 默认隐藏 */
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-    /* 使其可点击 */
+    /* --- 动画 --- */
+    cursor: pointer;
+    /* 注意: backdrop-filter 很难平滑地过渡，所以我们只过渡背景和不透明度 */
+    transition: opacity 0.3s ease, background-color 0.3s ease;
     pointer-events: auto;
 }
+
 /* 鼠标悬停在 *图片区域* 时显示箭头 */
 .post-card-image.photo-stack:hover .stack-nav {
     opacity: 1;
     visibility: visible;
+    /* --- 液态玻璃效果 --- */
+    background-color: rgba(255, 255, 255, 0.15); /* 半透明背景 */
+    backdrop-filter: blur(8px); /* 模糊背景 */
+    -webkit-backdrop-filter: blur(8px); /* 兼容 Safari */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* 增加一个微妙的边缘 */
 }
-.post-card-image.photo-stack .stack-nav:hover {
-    background: #fff;
+
+/* --- 使用 ::before 伪元素创建形状 --- */
+.post-card-image.photo-stack .stack-nav::before {
+    content: '';
+    display: block;
+    width: 13px; /* 形状大小 */
+    height: 13px;
+    
+    /* 形状颜色和粗细 */
+    border-top: 3px solid rgba(255, 255, 255, 0.8);
+    border-right: 3px solid rgba(255, 255, 255, 0.8);
+    
+    transition: border-color 0.3s ease;
 }
+
+.post-card-image.photo-stack .stack-nav:hover::before {
+    border-color: #ffffff; /* 悬停时变实心白 */
+}
+
+/* --- 旋转形状以创建左/右箭头 --- */
+.post-card-image.photo-stack .stack-nav-next::before {
+    transform: rotate(45deg);
+    margin-left: -3px; /* 视觉微调 */
+}
+
+.post-card-image.photo-stack .stack-nav-prev::before {
+    transform: rotate(-135deg);
+    margin-right: -3px; /* 视觉微调 */
+}
+
 /* 调整箭头位置以适应 padding */
-.post-card-image.photo-stack .stack-nav-prev { left: 35px; padding-right: 2px; } /* 20px padding + 15px */
-.post-card-image.photo-stack .stack-nav-next { right: 35px; padding-left: 2px; }
+.post-card-image.photo-stack .stack-nav-prev { left: 20px; } /* 20px padding + 15px */
+.post-card-image.photo-stack .stack-nav-next { right: 20px; }
 
 /* --- 原有的卡片内容样式 --- */
 .post-card-content {
@@ -1019,19 +1057,19 @@ main section:nth-child(even) {
     .post-card-image.photo-stack {
         flex-basis: 220px; 
         min-height: 220px; 
-        padding: 15px; /* 减少 padding */
+        padding: 25px;
     }
     
     /* 调整堆叠照片的大小 */
     .post-card-image.photo-stack img {
-        width: calc(100% - 30px);
-        height: calc(100% - 30px);
+        width: calc(100% - 50px);
+        height: calc(100% - 50px);
     }
     
     /* 调整箭头 */
     .post-card-image.photo-stack .stack-nav {
-        width: 32px;
-        height: 32px;
+        width: 35px;
+        height: 35px;
         font-size: 1.4rem;
     }
     /* 调整箭头位置以适应 padding */

@@ -72,44 +72,71 @@ document.addEventListener("DOMContentLoaded", function() {
                 container.classList.add("photo-stack");
 
                 // --- 创建翻页箭头 ---
-                
-                // 创建 "Next" 按钮 (右)
+                // --- 4. 重构翻页逻辑 ---
+                const goToNext = () => {
+                    const currentImages = container.querySelectorAll("img");
+                    container.appendChild(currentImages[0]); // 将第一张移到末尾
+                };
+
+                const goToPrev = () => {
+                    const currentImages = Array.from(container.querySelectorAll("img"));
+                    const lastImage = currentImages[currentImages.length - 1];
+                    container.prepend(lastImage); // 将最后一张移到开头
+                };
+
+                // --- 5. 创建箭头 (用于桌面端) ---
                 const nextBtn = document.createElement("button");
                 nextBtn.classList.add("stack-nav", "stack-nav-next");
-                nextBtn.innerHTML = "&#8250;"; // HTML 实体: >
+                // nextBtn.innerHTML = "&#8250;"; // <-- 已按您的建议移除
                 nextBtn.setAttribute("aria-label", "Next Photo");
                 
-                // 创建 "Prev" 按钮 (左)
                 const prevBtn = document.createElement("button");
                 prevBtn.classList.add("stack-nav", "stack-nav-prev");
-                prevBtn.innerHTML = "&#8249;"; // HTML 实体: <
+                // prevBtn.innerHTML = "&#8249;"; // <-- 已按您的建议移除
                 prevBtn.setAttribute("aria-label", "Previous Photo");
 
-                // 将按钮添加到容器中
                 container.appendChild(prevBtn);
                 container.appendChild(nextBtn);
 
-                // --- 添加点击事件逻辑 ---
-
-                // 点击 "Next"
+                // --- 6. 绑定桌面端点击事件 ---
                 nextBtn.addEventListener("click", (e) => {
-                    e.stopPropagation(); // 防止触发卡片点击 (如果未来有的话)
-                    // 获取当前所有图片 (顺序会变)
-                    const currentImages = container.querySelectorAll("img");
-                    // 将第一张 (最顶上) 的图片移动到容器的末尾
-                    container.appendChild(currentImages[0]);
+                    e.stopPropagation(); 
+                    goToNext();
                 });
 
-                // 点击 "Prev"
                 prevBtn.addEventListener("click", (e) => {
                     e.stopPropagation();
-                    // 获取当前所有图片的数组
-                    const currentImages = Array.from(container.querySelectorAll("img"));
-                    // 获取最后一张 (最底下) 的图片
-                    const lastImage = currentImages[currentImages.length - 1];
-                    // 将最后一张图片移动到容器的开头
-                    container.prepend(lastImage);
+                    goToPrev();
                 });
+
+                // --- 7. NEW: 添加移动端滑动事件 ---
+                let touchstartX = 0;
+                let touchendX = 0;
+                const swipeThreshold = 60; // 滑动超过 60px 才触发
+
+                container.addEventListener('touchstart', (e) => {
+                    touchstartX = e.changedTouches[0].screenX;
+                }, { passive: true }); // 使用 passive 提高性能
+
+                container.addEventListener('touchend', (e) => {
+                    touchendX = e.changedTouches[0].screenX;
+                    handleSwipe();
+                }, { passive: true });
+
+                const handleSwipe = () => {
+                    const deltaX = touchendX - touchstartX;
+                    
+                    if (deltaX < -swipeThreshold) {
+                        // 向左滑动 (Next)
+                        goToNext();
+                    } else if (deltaX > swipeThreshold) {
+                        // 向右滑动 (Prev)
+                        goToPrev();
+                    }
+                    // 重置
+                    touchstartX = 0;
+                    touchendX = 0;
+                }
             }
         });
     };
