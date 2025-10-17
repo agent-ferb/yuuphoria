@@ -899,7 +899,7 @@ main section:nth-child(even) {
     overflow: visible; 
 }
 /* 2. 堆叠中所有照片的通用样式 */
-.photo-stack img {
+.post-card-image.photo-stack img {
     position: absolute; /* 关键：将所有照片堆叠在一起 */
     
     /* 减去 padding，并添加边框 */
@@ -921,28 +921,28 @@ main section:nth-child(even) {
 }
 /* 3. 定义堆叠顺序 (z-index) 和位置 (transform) */
 /* 第 1 张 (最顶层) */
-.photo-stack img:nth-child(1) {
+.post-card-image.photo-stack img:nth-child(1) {
     transform: rotate(3deg) scale(1);
     z-index: 3;
 }
 /* 第 2 张 (中间) */
-.photo-stack img:nth-child(2) {
+.post-card-image.photo-stack img:nth-child(2) {
     transform: rotate(-2deg) scale(0.97);
     z-index: 2;
 }
 /* 第 3 张 (底层) */
-.photo-stack img:nth-child(3) {
+.post-card-image.photo-stack img:nth-child(3) {
     transform: rotate(2deg) scale(0.94);
     z-index: 1;
 }
 /* 第 4 张及以后 (藏在最下面，准备循环上来) */
-.photo-stack img:nth-child(n+4) {
+.post-card-image.photo-stack img:nth-child(n+4) {
     transform: rotate(0) scale(0.9);
     z-index: 0;
     opacity: 0; /* 隐藏，但仍参与 DOM 排序 */
 }
 /* 4. 翻页箭头 */
-.stack-nav {
+.post-card-image.photo-stack .stack-nav {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -967,17 +967,20 @@ main section:nth-child(even) {
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
+    /* 使其可点击 */
+    pointer-events: auto;
 }
 /* 鼠标悬停在 *图片区域* 时显示箭头 */
 .post-card-image.photo-stack:hover .stack-nav {
     opacity: 1;
     visibility: visible;
 }
-.stack-nav:hover {
+.post-card-image.photo-stack .stack-nav:hover {
     background: #fff;
 }
-.stack-nav-prev { left: 35px; padding-right: 2px; } /* 35px = 20px padding + 15px */
-.stack-nav-next { right: 35px; padding-left: 2px; }
+/* 调整箭头位置以适应 padding */
+.post-card-image.photo-stack .stack-nav-prev { left: 35px; padding-right: 2px; } /* 20px padding + 15px */
+.post-card-image.photo-stack .stack-nav-next { right: 35px; padding-left: 2px; }
 
 /* --- 原有的卡片内容样式 --- */
 .post-card-content {
@@ -1018,20 +1021,21 @@ main section:nth-child(even) {
     }
     
     /* 调整堆叠照片的大小 */
-    .photo-stack img {
+    .post-card-image.photo-stack img {
         width: calc(100% - 30px);
         height: calc(100% - 30px);
     }
     
     /* 调整箭头 */
-    .stack-nav {
+    .post-card-image.photo-stack .stack-nav {
         width: 32px;
         height: 32px;
         font-size: 1.4rem;
     }
-    .stack-nav-prev { left: 25px; } /* 15px padding + 10px */
-    .stack-nav-next { right: 25px; }
-    
+    /* 调整箭头位置以适应 padding */
+    .post-card-image.photo-stack .stack-nav-prev { left: 25px; } /* 15px padding + 10px */
+    .post-card-image.photo-stack .stack-nav-next { right: 25px; }
+
     .post-card-content {
         padding: 2rem;
     }
