@@ -71,8 +71,21 @@ document.addEventListener("DOMContentLoaded", function() {
                 // 为容器添加 'photo-stack' 类以激活 CSS 样式
                 container.classList.add("photo-stack");
 
-                // --- 创建翻页箭头 ---
-                // --- 4. 重构翻页逻辑 ---
+                // --- 4. NEW: 解决问题 #4 (保留角度) ---
+                // 定义初始堆叠的角度
+                // (这些角度对应我们即将修改的 CSS)
+                const initialRotations = ['3deg', '-2deg', '2deg'];
+
+                images.forEach((img, index) => {
+                    // 从数组中获取角度，如果照片多于3张，则默认为 0
+                    const rotation = initialRotations[index] || '0deg';
+                    
+                    // 将这个角度作为 "邮票" 永久地盖在图片上
+                    img.style.setProperty('--rotation', rotation);
+                });
+                // --- END NEW SECTION ---
+
+                // --- 5. 重构翻页逻辑 ---
                 const goToNext = () => {
                     const currentImages = container.querySelectorAll("img");
                     container.appendChild(currentImages[0]); // 将第一张移到末尾

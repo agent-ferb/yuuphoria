@@ -917,6 +917,9 @@ main section:nth-child(even) {
     box-shadow: 0 6px 15px rgba(0,0,0,0.2);
     border-radius: 2px;
     
+    /* --- 关键修正 --- */
+    --rotation: 0deg; /* 默认/回退值 */
+    transform: rotate(var(--rotation)) scale(1); /* 基础 transform */
     /* 关键：DOM 顺序改变时，平滑地播放 transform 动画 */
     transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
     
@@ -925,26 +928,27 @@ main section:nth-child(even) {
     user-select: none;
 }
 /* 3. 定义堆叠顺序 (z-index) 和位置 (transform) */
+
 /* 第 1 张 (最顶层) */
 .post-card-image.photo-stack img:nth-child(1) {
-    transform: rotate(3deg) scale(1);
+    transform: rotate(var(--rotation)) scale(1); /* <-- 修正 */
     z-index: 3;
 }
 /* 第 2 张 (中间) */
 .post-card-image.photo-stack img:nth-child(2) {
-    transform: rotate(-2deg) scale(0.97);
+    transform: rotate(var(--rotation)) scale(0.97); /* <-- 修正 */
     z-index: 2;
 }
 /* 第 3 张 (底层) */
 .post-card-image.photo-stack img:nth-child(3) {
-    transform: rotate(2deg) scale(0.94);
+    transform: rotate(var(--rotation)) scale(0.94); /* <-- 修正 */
     z-index: 1;
 }
-/* 第 4 张及以后 (藏在最下面，准备循环上来) */
+/* 第 4 张及以后 (堆在最底层) */
 .post-card-image.photo-stack img:nth-child(n+4) {
-    transform: rotate(0) scale(0.9);
+    transform: rotate(var(--rotation)) scale(0.9); /* <-- 修正 */
     z-index: 0;
-    opacity: 1; /* 隐藏，但仍参与 DOM 排序 */
+    opacity: 1; 
 }
 /* 4. 翻页箭头 */
 .post-card-image.photo-stack .stack-nav {
@@ -1059,7 +1063,7 @@ main section:nth-child(even) {
     }
 
     .post-card-image {
-        flex-basis: 200px; /* Give the image a fixed height on mobile */
+        flex-basis: 100px; /* Give the image a fixed height on mobile */
     }
     
     /* 为照片堆设置特定高度 */
