@@ -890,7 +890,7 @@ main section:nth-child(even) {
     position: relative; /* 用于定位图片和箭头 */
     
     /* 留出空间让堆叠和旋转效果更好看 */
-    padding: 25px; 
+    padding: 10px; 
     box-sizing: border-box;
     
     /* 居中照片堆 */
@@ -900,6 +900,8 @@ main section:nth-child(even) {
     
     /* 允许旋转的照片溢出一点 */
     overflow: visible; 
+    /* 确保多图容器也和单图容器有一样的高度 */
+    height: 350px;
 }
 /* 2. 堆叠中所有照片的通用样式 */
 .post-card-image.photo-stack img {
