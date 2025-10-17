@@ -874,7 +874,7 @@ main section:nth-child(even) {
 
 .post-card-image {
     flex: 0 0 40%; /* Image takes up 40% of the card's width */
-    min-height: 250px; /* Ensures a minimum height for the card */
+    height: 350px; /* Ensures a minimum height for the card */
     position: relative;
 }
 
@@ -890,7 +890,7 @@ main section:nth-child(even) {
     position: relative; /* 用于定位图片和箭头 */
     
     /* 留出空间让堆叠和旋转效果更好看 */
-    padding: 35px; 
+    padding: 25px; 
     box-sizing: border-box;
     
     /* 居中照片堆 */
@@ -951,8 +951,8 @@ main section:nth-child(even) {
     transform: translateY(-50%);
     z-index: 100; /* 在所有照片之上 */
 
-    width: 45px;
-    height: 45px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
 
     /* --- 默认无痕状态 --- */
@@ -978,49 +978,56 @@ main section:nth-child(even) {
     pointer-events: auto;
 }
 
-/* 鼠标悬停在 *图片区域* 时显示箭头 */
-.post-card-image.photo-stack:hover .stack-nav {
-    opacity: 1;
-    visibility: visible;
-    /* --- 液态玻璃效果 --- */
-    background-color: rgba(255, 255, 255, 0.15); /* 半透明背景 */
-    backdrop-filter: blur(8px); /* 模糊背景 */
-    -webkit-backdrop-filter: blur(8px); /* 兼容 Safari */
-    border: 1px solid rgba(255, 255, 255, 0.2); /* 增加一个微妙的边缘 */
-}
-
 /* --- 使用 ::before 伪元素创建形状 --- */
 .post-card-image.photo-stack .stack-nav::before {
     content: '';
     display: block;
-    width: 13px; /* 形状大小 */
-    height: 13px;
+    width: 10px; /* 形状大小 */
+    height: 10px;
     
     /* 形状颜色和粗细 */
-    border-top: 3px solid rgba(255, 255, 255, 0.8);
-    border-right: 3px solid rgba(255, 255, 255, 0.8);
+    border-top: 2px solid rgba(255, 255, 255, 0.8);
+    border-right: 2px solid rgba(255, 255, 255, 0.8);
     
-    transition: border-color 0.3s ease;
-}
+    /* --- 关键修正：添加圆角以柔化箭头 --- */
+    border-radius: 2px;
 
-.post-card-image.photo-stack .stack-nav:hover::before {
-    border-color: #ffffff; /* 悬停时变实心白 */
+    transition: border-color 0.3s ease;
 }
 
 /* --- 旋转形状以创建左/右箭头 --- */
 .post-card-image.photo-stack .stack-nav-next::before {
     transform: rotate(45deg);
-    margin-left: -3px; /* 视觉微调 */
+    margin-left: -2px; /* 视觉微调 */
 }
 
 .post-card-image.photo-stack .stack-nav-prev::before {
     transform: rotate(-135deg);
-    margin-right: -3px; /* 视觉微调 */
+    margin-right: -2px; /* 视觉微调 */
 }
 
 /* 调整箭头位置以适应 padding */
 .post-card-image.photo-stack .stack-nav-prev { left: 20px; } /* 20px padding + 15px */
 .post-card-image.photo-stack .stack-nav-next { right: 20px; }
+
+@media (pointer: fine) {
+    
+    /* 1. 鼠标悬停在 *图片区域* 时显示箭头 */
+    .post-card-image.photo-stack:hover .stack-nav {
+        opacity: 1;
+        visibility: visible;
+        /* --- 液态玻璃效果 --- */
+        background-color: rgba(255, 255, 255, 0.15); /* 半透明背景 */
+        backdrop-filter: blur(8px); /* 模糊背景 */
+        -webkit-backdrop-filter: blur(8px); /* 兼容 Safari */
+        border: 1px solid rgba(255, 255, 255, 0.2); /* 增加一个微妙的边缘 */
+    }
+    
+    /* 2. 鼠标悬停在 *箭头本身* 时，箭头形状变白 */
+    .post-card-image.photo-stack .stack-nav:hover::before {
+        border-color: #ffffff; /* 悬停时变实心白 */
+    }
+}
 
 /* --- 原有的卡片内容样式 --- */
 .post-card-content {
@@ -1066,16 +1073,6 @@ main section:nth-child(even) {
         height: calc(100% - 50px);
     }
     
-    /* 调整箭头 */
-    .post-card-image.photo-stack .stack-nav {
-        width: 35px;
-        height: 35px;
-        font-size: 1.4rem;
-    }
-    /* 调整箭头位置以适应 padding */
-    .post-card-image.photo-stack .stack-nav-prev { left: 25px; } /* 15px padding + 10px */
-    .post-card-image.photo-stack .stack-nav-next { right: 25px; }
-
     .post-card-content {
         padding: 2rem;
     }
