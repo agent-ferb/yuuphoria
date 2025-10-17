@@ -195,7 +195,7 @@ body {
 /* 桌面端 Header */
 .site-header {
     width: 100%;
-    padding: 0.8rem 5%;
+    padding: 0.5rem 5%;
     position: fixed;
     top: 0;
     left: 0;
@@ -680,7 +680,7 @@ main section:nth-child(even) {
         flex-direction: column-reverse;
         text-align: center;
     }
-    .hero-text h1 { font-size: 2.5rem; }
+    .hero-text h1 { font-size: 2rem; }
     .hero-text .tagline {font-size: 1.1rem;}
     .quick-facts { align-items: center; }
     .hero-buttons { justify-content: center; }
@@ -1074,7 +1074,7 @@ main section:nth-child(even) {
         width: 160px;
         height: 160px;
     }
-    
+
     .time-chart {
         /* 将图表尺寸从 200px 缩小到 160px */
         width: 160px;
