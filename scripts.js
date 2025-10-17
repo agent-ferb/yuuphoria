@@ -123,4 +123,6 @@ document.addEventListener("DOMContentLoaded", function() {
     
     loadComponent("footer-placeholder", "footer.html");
 
+    // 在页面加载时运行照片堆叠函数
+    initializeJourneyPhotoStack();
 });
