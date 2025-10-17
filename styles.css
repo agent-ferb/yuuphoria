@@ -195,7 +195,7 @@ body {
 /* 桌面端 Header */
 .site-header {
     width: 100%;
-    padding: 0.5rem 5%;
+    padding: 0.5rem     5%           0.3rem;
     position: fixed;
     top: 0;
     left: 0;
